@@ -91,7 +91,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 -- See `:help vim.opt`
@@ -195,8 +195,6 @@ vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 
 vim.keymap.set('n', 'J', ':m .+1<CR>==')
 vim.keymap.set('n', 'K', ':m .-2<CR>==')
-vim.keymap.set('i', '<A-J>', ':m .+1<CR>==gi')
-vim.keymap.set('i', '<A-K>', ':m .-2<CR>==gi')
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -487,16 +485,6 @@ require('lazy').setup({
         { path = 'luvit-meta/library', words = { 'vim%.uv' } },
       },
     },
-  },
-  {
-    'mfussenegger/nvim-treehopper',
-    setup = function()
-      local opts = { noremap = true, silent = true }
-
-      vim.keymap.set('o', 'a', ":<C-U>lua require('tsht').nodes()<CR>", { silent = true })
-      vim.keymap.set('v', 'a', ":lua require('tsht').nodes()<CR>", opts)
-      vim.keymap.set('x', 'a', ":lua require('tsht').nodes()<CR>", opts)
-    end,
   },
   { 'ziglang/zig.vim' },
   { 'Bilal2453/luvit-meta', lazy = true },
@@ -957,6 +945,15 @@ require('lazy').setup({
       ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
       -- Autoinstall languages that are not installed
       auto_install = true,
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = 'gnn', -- set to `false` to disable one of the mappings
+          node_incremental = 'grn',
+          scope_incremental = 'grc',
+          node_decremental = 'grm',
+        },
+      },
       highlight = {
         enable = true,
         -- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
