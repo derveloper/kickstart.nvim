@@ -981,14 +981,6 @@ require('lazy').setup({
   },
 
   {
-    'edluffy/hologram.nvim',
-    config = function(_, _)
-      require('hologram').setup {
-        auto_display = true, -- WIP automatic markdown image display, may be prone to breaking
-      }
-    end,
-  },
-  {
     'elixir-tools/elixir-tools.nvim',
     version = '*',
     event = { 'BufReadPre', 'BufNewFile' },
